@@ -1,0 +1,30 @@
+#example_modal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog
+        form.form-horizontal.modal-content(role='form')
+            .modal-body
+                .form-group
+                    label.control-label.col-sm-2(for='name') 样例名
+                    .col-sm-10
+                        input.form-control(type='text', name='name' v-model='info.name')
+                .form-group
+                    label.control-label.col-sm-2(for='intfcl') 对应接口
+                    .col-sm-10
+                        v-select(v-model='selectedInterface', label='name', :options='interfaces', :on-search='getInterfaces')
+                .form-group
+                    label.control-label.col-sm-2(for='code') 状态码
+                    .col-sm-10
+                        input.form-control(type='number', name='code' v-model='info.code')
+                .form-group
+                    label.control-label.col-sm-2(for='cookies') 设置cookies
+                    .col-sm-10
+                        textarea.form-control(name="cookies", v-model='info.cookies' cols="30", rows="10")
+                .form-group
+                    label.control-label.col-sm-2(for='content') 返回内容
+                    .col-sm-10
+                        textarea.form-control(name='content', v-model='info.content' cols="30", rows="10")        
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                button.btn.btn-primary(type='button', @click='upload()') 确定
+script(src='/public/js/vue.js')
+script(src='/public/js/vue-select.js')
+script(src="/js/modal/example.js")

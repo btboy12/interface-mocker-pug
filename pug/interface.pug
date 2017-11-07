@@ -1,0 +1,35 @@
+html
+    head 
+        title 接口列表
+        include ./public/common.pug
+        link(rel="stylesheet", href="/public/css/bootstrap-switch.min.css")
+        link(rel='stylesheet', href='/css/interface.css')
+        script(src="/public/js/bootstrap-switch.min.js")
+        script(src="/public/js/mindmup-editabletable.js")
+        script(src="/public/js/template.js")
+        script(src="/js/interface.js")
+    body
+    -var page='interface'
+        include ./public/header.pug
+        .container
+            #toolbar.btn-group
+                btn.btn.btn-primary(onclick='add()') 添加
+                select#filter
+            table#data_list(
+                data-toggle='table', 
+                data-toolbar='#toolbar', 
+                data-url='/api/interface', 
+                data-search=true, 
+                data-query-params="getParams", 
+                data-pagination=true, 
+                data-side-pagination="server")
+                thead
+                    tr
+                        th(data-formatter='getSwitch') 是否转发
+                        th(data-field="name") 接口名
+                        th(data-field="router") 接口地址
+                        th(data-field="developer.name") 开发者
+                        th(data-formatter='getButton') 操作
+                
+        include ./modal/interface.pug
+    script(src='/js/interface.js')

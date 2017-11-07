@@ -1,0 +1,20 @@
+html
+    head
+        title 接口模拟器-开发者配置
+        include ./public/common.pug
+        script(src="/js/developer.js")
+    body
+    -var page='developer'
+        include ./public/header.pug
+        .container
+            #toolbar.btn-group
+                btn.btn.btn-primary(onclick='add()') 添加
+            table#data_list(data-toggle='table', data-toolbar='#toolbar', data-url='/api/developer')
+                thead
+                    tr
+                        th(data-field='name') 姓名
+                        th(data-field='addr') 地址
+                        th(data-field='port') 端口号
+                        th(data-formatter='getButton') 操作
+            include ./modal/developer.pug
+    script(src='/js/developer.js')

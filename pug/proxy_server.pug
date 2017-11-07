@@ -1,0 +1,37 @@
+html
+    head
+        title 中转服务器
+        include ./public/common.jade
+    body
+-     var page='proxy_server'
+        include ./public/header.jade
+        .container
+            #toolbar.btn-group
+                btn.btn.btn-primary(onclick='add()') 添加
+            table#data_list(data-toggle='table', data-toolbar='#toolbar', data-url='/api/developer')
+                thead
+                    tr
+                        th(data-formatter='getSwitch') 启用
+                        th(data-field='name') 接口名
+                        th(data-field='addr') 地址
+                        th(data-formatter='getButton') 操作
+        #modal.modal.fade(tabindex='-1', role='dialog')
+            .modal-dialog
+                form.form-horizontal.modal-content(role='form')
+                    .modal-body
+                        .form-group
+                            label.control-label.col-sm-2(for='name') 姓名
+                            .col-sm-10
+                                input.form-control(type='text', name='name' v-model='info.name')
+                        .form-group
+                            label.control-label.col-sm-2(for='addr') 地址
+                            .col-sm-10
+                                input.form-control(type='text', name='addr' v-model='info.addr')
+                        .form-group
+                            label.control-label.col-sm-2(for='port') 端口号
+                            .col-sm-10
+                                input.form-control(type='number', name='port' v-model='info.port')
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                        button.btn.btn-primary(type='button', onclick='upload()') 确定
+    script(src='/js/developer.js')

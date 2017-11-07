@@ -1,0 +1,27 @@
+html
+  head
+    title 接口模拟器-接口分类
+    include ./public/common.jade
+  body
+-   var page='other'
+    include ./public/header.jade
+    .container
+      #toolbar.btn-group
+        btn.btn.btn-primary(onclick='add()') 添加
+      table#data_list(data-toggle='table', data-toolbar='#toolbar', data-url='/api/intfc_class')
+        thead
+          tr
+            th(data-field='name') 分类名
+            th(data-formatter='getButton') 操作
+    #modal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog
+        form.form-horizontal.modal-content(role='form')
+          .modal-body
+            .form-group
+              label.control-label.col-sm-2(for='name') 分类名
+              .col-sm-10
+                input#name.form-control(type='text', name='name')
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') 取消
+            button.btn.btn-primary(type='button', onclick='upload()') 确定
+  script(src='/js/intfc_class.js')

@@ -1,0 +1,24 @@
+#interfaceSelect{
+    border: solid 1px rgb(200,200,200);
+    border-radius: 5px;
+    width:200px;
+    height:34px;
+    margin-left: 4px;
+    cursor: pointer;
+    transition:0.5s;
+    outline:none;
+}
+#interfaceSelect:hover{
+    border-color:rgb(102,175,233);
+}
+#interfaceSelect option{
+    font-size:16px;
+    color:rgb(80,80,80);
+    background-color: rgb(255,255,255);
+}
+#showAll{
+    font-weight: bold;
+}
+select::-ms-expand { /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+     display: none; 
+}

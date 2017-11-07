@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>接口列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/jquery.growl.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/jqtree.css">
+    <script src="../public/js/vue.js"></script>
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/bootstrap.js"></script>
+    <script src="../public/js/bootstrap-table.js"></script>
+    <script src="../public/js/bootstrap-table-zh-CN.js"></script>
+    <script src="../public/js/jquery.growl.js"></script>
+    <script src="../public/js/tree.jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#data_list .return-button").click(function(){
+               var interfaceValue=$(this).parent().parent().parent().children("td").eq(1).html();
+               location.href="/example"+interfaceValue+"=1";
+               //window.open('/example'+interfaceValue+'=1');
+            });
+        })
+    </script>
+</head>
+<style type="text/css">
+th:nth-child(1){
+    width: 20%;
+}
+th:nth-child(2){
+    width: 25%;
+}
+th:nth-child(3){
+    width: 15%;
+}
+th:nth-child(4){
+    width: 40%;
+}
+</style>
+<body>
+    <nav role="navigation" class="navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header"><a href="/" class="navbar-brand">接口模拟器</a></div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li> <a href="/developer">开发人员表</a></li>
+                    <li class="active"> <a href="/interface">接口列表</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">
+                            其他设置<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" data-toggle="tab">测试用户</a></li>
+                            <li><a href="#" data-toggle="tab">角色权限</a></li>
+                            <li><a href="#" data-toggle="tab">状态码管理</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="toolbar" class="btn-group">
+            <btn onclick="add()" class="btn btn-primary">添加</btn>
+        </div>
+        <table data-toggle="table" data-toolbar="#toolbar" id="data_list">
+            <thead>
+                <tr>
+                    <th>接口名</th>
+                    <th>接口地址</th>
+                    <th>开发者</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>测试</td>
+                    <td>/v1/test</td>
+                    <td>老子</td>
+                    <td>
+                        <div class="function-button">
+                            <btn class="btn btn-warning">添加</btn>
+                            <btn class="btn btn-primary">修改</btn>
+                            <btn class="btn btn-primary return-button">返回样例</btn>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog modal-lg" onkeypress="iSubmit(event,this)">
+            <div class="modal-content">
+                <form role="form" class="modal-body form-horizontal">
+                    <input id="id" style="display:none" name="id">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">基本信息</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="name" class="control-label col-sm-2">所属</label>
+                                <div class="col-sm-10">
+                                    <input id="type" type="text" name="type" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="control-label col-sm-2">接口名</label>
+                                <div class="col-sm-10">
+                                    <input id="name" type="text" name="name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="addr" class="control-label col-sm-2">接口地址</label>
+                                <div class="col-sm-10">
+                                    <input id="addr" type="text" name="addr" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="port" class="control-label col-sm-2">开发者</label>
+                                <div class="col-sm-10">
+                                    <select id="developer" name="port" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">请求参数</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">返回数据</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                    <button type="button" onclick="upload()" class="btn btn-primary">确定</button>
+                </div>
+            </div>
+        </div>
+</body>

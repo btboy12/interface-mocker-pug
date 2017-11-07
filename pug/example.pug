@@ -1,0 +1,25 @@
+html
+    head
+        title 接口模拟器-返回样例
+        include ./public/common.pug
+        link(rel="stylesheet", href="/public/css/bootstrap-switch.min.css")
+        link(rel='stylesheet', href='/css/example.css')
+        script(src="/public/js/bootstrap-switch.min.js")
+        script(src="/public/js/template.js")
+        script(src="/js/example.js")
+    body
+    -var page='example'
+        include ./public/header.pug
+        .container
+            #toolbar.btn-group
+                button.btn.btn-primary(onclick='add()') 添加 
+                select#filter
+            table#data_list(data-toggle='table', data-toolbar='#toolbar', data-url='/api/example', data-search=true, data-query-params="getParams", data-pagination=true, data-side-pagination="server")
+                thead
+                    tr
+                        th(data-formatter='getSwitch') 启用中
+                        th(data-field='name') 样例名
+                        th(data-field='interface.name') 对应接口
+                        th(data-formatter='getButton') 操作
+        include ./modal/example
+    script(src='/js/example.js')

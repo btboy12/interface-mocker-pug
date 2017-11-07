@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>接口模拟器-开发者配置</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/jquery.growl.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/bootstrap.js"></script>
+    <script src="/public/js/bootstrap-table.js"></script>
+    <script src="/public/js/bootstrap-table-zh-CN.js"></script>
+    <script src="/public/js/jquery.growl.js"></script>
+</head>
+
+<body>
+    <nav role="navigation" class="navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header"><a href="/" class="navbar-brand">接口模拟器</a></div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"> <a href="/developer">开发人员表</a></li>
+                    <li> <a href="/interface">接口列表</a></li>
+                    <li> <a href="#">测试列表</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="toolbar" class="btn-group">
+            <btn onclick="add()" class="btn btn-primary">添加</btn>
+        </div>
+        <table id="interface_list" data-toggle="table" data-toolbar="#toolbar" data-url="/api/developer">
+            <thead>
+                <tr>
+                    <th data-field="name">姓名</th>
+                    <th data-field="addr">地址</th>
+                    <th data-field="port">端口号</th>
+                    <th data-formatter="getButton">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="modal" tabindex="-1" role="dialog" class="modal fade">
+        <div class="modal-dialog">
+            <form role="form" class="form-horizontal modal-content">
+                <div class="modal-body"><input id="id" style="display:none" name="id">
+                    <div class="form-group"><label for="name" class="control-label col-sm-2">姓名</label>
+                        <div class="col-sm-10"><input id="name" type="text" name="name" class="form-control"></div>
+                    </div>
+                    <div class="form-group"><label for="addr" class="control-label col-sm-2">地址</label>
+                        <div class="col-sm-10"><input id="addr" type="text" name="addr" class="form-control"></div>
+                    </div>
+                    <div class="form-group"><label for="port" class="control-label col-sm-2">端口号</label>
+                        <div class="col-sm-10"><input id="port" type="number" name="port" class="form-control"></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">取消</button><button type="button" onclick="upload()"
+                        class="btn btn-primary">确定</button></div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="/js/index.js"></script>
+
+</html>

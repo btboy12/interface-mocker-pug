@@ -1,0 +1,101 @@
+#interface_modal.modal.fade
+    .modal-dialog.modal-lg(@keydown.ctrl.83.prevent="upload")
+        .modal-content
+            .modal-body
+                .panel.panel-primary
+                    .panel-heading
+                        h3.panel-title 基本信息
+                    form.panel-body.form-horizontal
+                        .form-group
+                            label.control-label.col-sm-2(for='description') 描述
+                            .col-sm-10
+                                textarea.form-control(
+                                    type='text', 
+                                    name='description' 
+                                    v-model='info.description')
+                        .form-group
+                            label.control-label.col-sm-2(for='name') 接口名
+                            .col-sm-10
+                                input.form-control(type='text', name='name', v-model='info.name')
+                        .form-group
+                            label.control-label.col-sm-2(for='addr') 接口地址
+                            .col-sm-10
+                                input.form-control(
+                                    type='text', 
+                                    name='addr',
+                                    placeholder="例:  /api/:id/test  对应  /api/100/test",
+                                    v-model='info.router'
+                                    )
+                        .form-group
+                            label.control-label.col-sm-2(for='method') 请求方法
+                            .col-sm-10
+                                v-select(
+                                    name='method', 
+                                    v-model='info.method', 
+                                    label='name', 
+                                    :options="['get','head','post','put','delete','connect','options','trace','patch']"
+                                    )
+                        .form-group
+                            label.control-label.col-sm-2(for='developerId') 开发者
+                            .col-sm-10
+                                v-select(
+                                    name='developerId',
+                                    v-model='selectedDeveloper', 
+                                    label='name', 
+                                    :options='developers', 
+                                    :on-search='getDevelopers'
+                                    )
+                .panel.panel-info
+                    .panel-heading(style={position:"relative"})
+                        h3.panel-title 请求参数
+                        button.btn.btn-primary(
+                            style={position:"absolute",top:"0",right:"0"},
+                            @click="edit('reqInfo')"
+                            ) {{reqInfoBtn}}
+                    .panel-body.row
+                        textarea(
+                            rows=5,
+                            style={width:"100%"},
+                            @keydown.stop.prevent.tab="tab",
+                            v-show="editting.reqInfo",
+                            v-model="editting.str")
+                        table.table.table-striped.table-bordered(v-show="!editting.reqInfo")
+                            thead
+                                tr
+                                    th 字段
+                                    th 类型
+                                    th 描述
+                                    th 备注
+                            tbody#req_info
+                                tr(v-for="row in info.reqInfo")
+                                    td(v-for="item in row") {{item}}
+                .panel.panel-success
+                    .panel-heading(style={position:"relative"})
+                        h3.panel-title 返回数据
+                        button.btn.btn-primary(
+                            style={position:"absolute",top:"0",right:"0"},
+                            @click="edit('resInfo')"
+                            ) {{resInfoBtn}}
+                    .panel-body.row
+                        textarea(
+                            rows=5,
+                            style={width:"100%"},
+                            @keydown.stop.prevent.tab="tab",
+                            v-show="editting.resInfo",
+                            v-model="editting.str")
+                        table.table.table-striped.table-bordered(v-show="!editting.resInfo")
+                            thead
+                                tr
+                                    th 字段
+                                    th 类型
+                                    th 注释
+                                    th 描述
+                            tbody#res_info
+                                tr(v-for="row in info.resInfo")
+                                    td(v-for="item in row") {{item}}
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                button.btn.btn-primary(type='button', @click='upload()') 确定
+script(src='/public/js/vue.js')
+script(src='/public/js/vue-select.js')
+script(src="/js/modal/interface.js")

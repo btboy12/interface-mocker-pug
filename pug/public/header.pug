@@ -1,0 +1,19 @@
+nav.navbar-default(role='navigation')
+    .container-fluid
+        .navbar-header
+            button.navbar-toggle(type='button',data-toggle="collapse",data-target="#nav-item")
+                span.sr-only 切换导航
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar     
+            a.navbar-brand(href='/') 接口模拟器       
+        .navbar-right.collapse.navbar-collapse#nav-item
+            ul.nav.navbar-nav
+                li(class=(page=='developer'?'active':''))
+                    a(href='/developer') 开发人员表
+                li(class=(page=='interface'?'active':''))
+                    a(href='/interface') 接口列表
+                li(class=(page=='example'?'active':''))
+                    a(href='/example') 返回样例编辑
+                //- li(class=(page=='proxy_server'?'active':''))
+                //-     a(href='/proxy_server') 中转服务器

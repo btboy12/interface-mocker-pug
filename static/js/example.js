@@ -91,10 +91,10 @@
     }
 
     window.getSwitch = function (value, row, index) {
-        return template("<div><input data-id='${id}' class='switch' type='checkbox' ${isProxy}></div>"
+        return template("<div><input data-id='${id}' class='switch' type='checkbox' ${inUse}></div>"
             , {
                 id: row.id,
-                inUse: row.isProxy ? "checked" : ""
+                inUse: row.inUse ? "checked" : ""
             });
     }
 
